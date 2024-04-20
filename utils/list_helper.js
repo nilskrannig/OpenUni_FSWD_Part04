@@ -12,7 +12,16 @@ const totalLikes = (blogs) => {
     return sum
 }
 
+const favoriteBlog = (blogs) => {
+    const favorite = blogs.reduce(
+        (prev, current) => (prev && prev.likes > current.likes) ? prev : current
+        , null)
+
+    return favorite
+}
+
 module.exports = {
     dummy,
-    totalLikes
+    totalLikes,
+    favoriteBlog
 }
