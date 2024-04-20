@@ -17,7 +17,17 @@ const favoriteBlog = (blogs) => {
         (prev, current) => (prev && prev.likes > current.likes) ? prev : current
         , null)
 
-    return favorite
+    if(!favorite) return null
+
+    const formattedFavorite = Object.keys(favorite).reduce((acc, key) => {
+        if (key !== '_id' && key !== '__v' && key !== 'url') {
+            acc[key] = favorite[key]
+        }
+
+        return acc
+    }, {})
+
+    return formattedFavorite
 }
 
 module.exports = {

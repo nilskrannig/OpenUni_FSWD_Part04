@@ -96,19 +96,22 @@ describe('favorite blog', () => {
             likes: 2,
             __v: 0
         }
-        assert.deepStrictEqual(listHelper.favoriteBlog([testBlog])
-            , testBlog)
+        assert.deepStrictEqual(
+            listHelper.favoriteBlog([testBlog])
+            , {
+                title: "Type wars",
+                author: "Robert C. Martin",
+                likes: 2,
+            })
     })
 
     test('of bigger list is on with the highest likes count', () => {
-        assert.deepStrictEqual(listHelper.favoriteBlog(blogExamples)
+        assert.deepStrictEqual(
+            listHelper.favoriteBlog(blogExamples)
             , {
-                _id: "5a422b3a1b54a676234d17f9",
                 title: "Canonical string reduction",
                 author: "Edsger W. Dijkstra",
-                url: "http://www.cs.utexas.edu/~EWD/transcriptions/EWD08xx/EWD808.html",
                 likes: 12,
-                __v: 0
             })
     })
 })
