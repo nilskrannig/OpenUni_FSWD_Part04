@@ -105,7 +105,7 @@ describe('favorite blog', () => {
             })
     })
 
-    test('of bigger list is on with the highest likes count', () => {
+    test('of bigger list is the one with the highest likes count', () => {
         assert.deepStrictEqual(
             listHelper.favoriteBlog(blogExamples)
             , {
@@ -113,5 +113,26 @@ describe('favorite blog', () => {
                 author: "Edsger W. Dijkstra",
                 likes: 12,
             })
+    })
+
+    test('of a list is one of multiple with the highest likes count', () => {
+        const alsoTwelve = {
+            _id: "1234bc61b54a676234d17fc",
+            title: "Pig Wars",
+            author: "Robert Schwartin",
+            url: "www.google.com",
+            likes: 12,
+            __v: 0
+        }
+        const testBlogs = [...blogExamples, alsoTwelve]
+
+        assert.deepStrictEqual(
+            listHelper.favoriteBlog(testBlogs),
+            {
+                title: "Pig Wars",
+                author: "Robert Schwartin",
+                likes: 12,
+            }
+        )
     })
 })
