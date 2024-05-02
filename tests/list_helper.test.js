@@ -1,6 +1,7 @@
 const { test, describe } = require('node:test')
 const assert = require('node:assert')
 const listHelper = require('../utils/list_helper')
+const { log } = require('node:console')
 
 const blogExamples = [
     {
@@ -134,5 +135,37 @@ describe('favorite blog', () => {
                 likes: 12,
             }
         )
+    })
+})
+
+describe('mostBlogs', () => {
+    test('of empty list is null', () => {
+        assert.deepStrictEqual(listHelper.mostBlogs([]), null)
+    })
+
+    test('identifies the author with the most blogs', () => {
+        const result = listHelper.mostBlogs(blogExamples)
+        assert.deepStrictEqual(result, { author: 'Robert C. Martin', blogs: 3 })
+    })
+
+    test('handles a list with one blog', () => {
+        const result = listHelper.mostBlogs([blogExamples[0]])
+        assert.deepStrictEqual(result, { author: 'Michael Chan', blogs: 1 })
+    })
+})
+
+describe('mostLikes', () => {
+    test('of empty list is null', () => {
+        assert.deepStrictEqual(listHelper.mostLikes([]), null)
+    })
+
+    test('identifies the author with the most likes', () => {
+        const result = listHelper.mostLikes(blogExamples)
+        assert.deepStrictEqual(result, { author: 'Edsger W. Dijkstra', likes: 17 })
+    })
+
+    test('handles a list with one blog', () => {
+        const result = listHelper.mostLikes([blogExamples[0]])
+        assert.deepStrictEqual(result, { author: 'Michael Chan', likes: 7 })
     })
 })

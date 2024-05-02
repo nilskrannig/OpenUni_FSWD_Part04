@@ -30,8 +30,52 @@ const favoriteBlog = (blogs) => {
     return formattedFavorite
 }
 
+const mostBlogs = (blogs) => {
+    if(blogs.length === 0) return null
+
+    const authorCounts = {}
+    let maxBlogs = 0
+    let maxAuthor = ""
+
+    blogs.forEach(blog => {
+        authorCounts[blog.author] = (authorCounts[blog.author] || 0) + 1
+        if(authorCounts[blog.author] > maxBlogs) {
+            maxBlogs = authorCounts[blog.author]
+            maxAuthor = blog.author
+        }
+    })
+
+    return {
+        author: maxAuthor,
+        blogs: maxBlogs
+    }
+}
+
+const mostLikes = (blogs) => { 
+    if(blogs.length === 0) return null
+
+    const authorLikes = {}
+    let maxLikes = 0
+    let maxAuthor = ""
+
+    blogs.forEach(blog => {
+        authorLikes[blog.author] = (authorLikes[blog.author] || 0) + blog.likes
+        if(authorLikes[blog.author] > maxLikes) {
+            maxLikes = authorLikes[blog.author]
+            maxAuthor = blog.author
+        }
+    })
+
+    return {
+        author: maxAuthor,
+        likes: maxLikes
+    }    
+}
+
 module.exports = {
     dummy,
     totalLikes,
-    favoriteBlog
+    favoriteBlog,
+    mostBlogs,
+    mostLikes
 }
